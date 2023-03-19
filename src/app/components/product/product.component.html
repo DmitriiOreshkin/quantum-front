@@ -1,0 +1,24 @@
+<div class="product">
+  <div class="img-container center bborder">
+    <img [src]="product.image" [alt]="product.title" />
+  </div>
+  <div class="description">
+    <p class="vspace">{{ product.title }}</p>
+    <p class="vspace gray">Price:</p>
+    <div class="vspace">{{ product.price | currency }}</div>
+
+    <button
+      [ngClass]="{
+        'yellow-btn': details,
+        'green-btn': !details
+      }"
+      (click)="details = !details"
+    >
+      {{ !details ? "Показать" : "Скрыть" }} описание
+    </button>
+
+    <div *ngIf="details">
+      <p>{{ product.description }}</p>
+    </div>
+  </div>
+</div>

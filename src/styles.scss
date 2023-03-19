@@ -1,0 +1,28 @@
+/* You can add global styles to this file, and also import other style files */
+$border-color: rgb(218, 218, 218);
+
+* {
+  padding: 0px;
+  margin: 0px;
+  border: none;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.vspace {
+  margin-top: 10px;
+}
+
+.gray {
+  color: rgb(225, 223, 226);
+}
