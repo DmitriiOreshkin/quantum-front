@@ -1,0 +1,22 @@
+<div class="content">
+  <div class="logo center">quantum-store</div>
+  <div class="space"><app-global-error></app-global-error></div>
+  <div class="space center">
+    <div *ngIf="loading" class="loading">Loading...</div>
+  </div>
+  <div class="space"></div>
+  <div class="profile center">Dmitrii Oreshkin</div>
+  <div class="path center">Main page > Catalog</div>
+  <div class="wish-list center">Wish list</div>
+  <div class="cart center">Cart</div>
+  <div class="sidebar">Sidebar</div>
+  <div *ngIf="!loading" class="products">
+    <h1 class="center">Каталог</h1>
+    <input type="text" placeholder="Поиск" [(ngModel)]="term" />
+    <select name="" id=""></select>
+    <Product
+      *ngFor="let product of products$ | async; filterProducts: term"
+      [product]="product"
+    ></Product>
+  </div>
+</div>

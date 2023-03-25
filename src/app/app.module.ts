@@ -9,6 +9,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { GlobalErrorComponent } from './components/global-error/global-error.component';
 import { FormsModule } from '@angular/forms';
 import { FilterProductsPipe } from './pipes/filter-products.pipe';
+import { LoginComponent } from './components/login/login.component';
+import { HomePageComponent } from './components/home-page/home-page.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,8 @@ import { FilterProductsPipe } from './pipes/filter-products.pipe';
     HeaderComponent,
     GlobalErrorComponent,
     FilterProductsPipe,
+    LoginComponent,
+    HomePageComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],
