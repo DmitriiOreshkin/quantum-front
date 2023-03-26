@@ -7,10 +7,11 @@ import { ProductComponent } from './components/product/product.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HttpClientModule } from '@angular/common/http';
 import { GlobalErrorComponent } from './components/global-error/global-error.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FilterProductsPipe } from './pipes/filter-products.pipe';
 import { LoginComponent } from './components/login/login.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
+import { SearchProductsPipe } from './pipes/search-products.pipe';
 
 @NgModule({
   declarations: [
@@ -21,8 +22,9 @@ import { HomePageComponent } from './components/home-page/home-page.component';
     FilterProductsPipe,
     LoginComponent,
     HomePageComponent,
+    SearchProductsPipe,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule, ReactiveFormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })

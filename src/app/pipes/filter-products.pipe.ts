@@ -5,10 +5,9 @@ import { IProduct } from '../models/products';
   name: 'filterProducts',
 })
 export class FilterProductsPipe implements PipeTransform {
-  transform(products: IProduct[], search: string): IProduct[] {
-    if (search.length === 0) return products;
-    return products.filter((p) =>
-      p.title.toLowerCase().includes(search.toLowerCase())
-    );
+  transform(products: IProduct[], filter: string): IProduct[] {
+    console.log(filter);
+    if (filter === 'all') return products;
+    return products.filter((p) => p.type.includes(filter));
   }
 }

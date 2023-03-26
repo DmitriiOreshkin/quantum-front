@@ -1,9 +1,10 @@
 export interface IProduct {
-  id: number;
-  title: string;
+  id?: string; // СЕРВИСНОЕ
+  name: string;
   price: number;
+  lastUpdate?: string;
+  type: string;
+  imageUrl: string;
+  inStock?: number;
   description: string;
-  category: string;
-  image: string;
-  rating: { rate: number; count: number };
 }

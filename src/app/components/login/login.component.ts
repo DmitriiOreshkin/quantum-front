@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Route, Router } from '@angular/router';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -7,17 +9,26 @@ import { Route, Router } from '@angular/router';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  constructor(private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
-  ngOnInit(): void {}
+  loginForm!: FormGroup;
+  errorMessage = '';
 
-  public username: string = '';
-  public password: string = '';
+  ngOnInit(): void {
+    this.loginForm = new FormGroup({
+      username: new FormControl('', [Validators.required]),
+      password: new FormControl('', [
+        Validators.required,
+        // Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{4,}$/),
+      ]),
+    });
+  }
 
-  logCreds() {
-    if (this.username === 'Admin' && this.password === 'Admin') {
-      localStorage.setItem('login', 'true');
-      this.router.navigate(['home']);
-    }
+  submitLogin() {
+    console.log(this.loginForm.value);
+    this.authService.auth(this.loginForm.value).subscribe({
+      next: () => this.router.navigate(['home']),
+      error: (e) => (this.errorMessage = e),
+    });
   }
 }

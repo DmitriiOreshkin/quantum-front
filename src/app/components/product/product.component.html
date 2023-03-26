@@ -1,9 +1,10 @@
 <div class="product">
   <div class="img-container center bborder">
-    <img [src]="product.image" [alt]="product.title" />
+    <img [src]="product.imageUrl" [alt]="product.name" />
   </div>
   <div class="description">
-    <p class="vspace">{{ product.title }}</p>
+    <p class="vspace">Название: {{ product.name }}</p>
+    <p class="vspace">Тип: {{ product.type }}</p>
     <p class="vspace gray">Price:</p>
     <div class="vspace">{{ product.price | currency }}</div>
 
@@ -14,7 +15,7 @@
       }"
       (click)="details = !details"
     >
-      {{ !details ? "Показать" : "Скрыть" }} описание
+      {{ !details ? 'Показать' : 'Скрыть' }} описание
     </button>
 
     <div *ngIf="details">
