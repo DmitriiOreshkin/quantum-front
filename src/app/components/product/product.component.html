@@ -1,25 +1,27 @@
 <div class="product">
-  <div class="img-container center bborder">
-    <img [src]="product.imageUrl" [alt]="product.name" />
-  </div>
-  <div class="description">
-    <p class="vspace">Название: {{ product.name }}</p>
-    <p class="vspace">Тип: {{ product.type }}</p>
-    <p class="vspace gray">Price:</p>
-    <div class="vspace">{{ product.price | currency }}</div>
-
-    <button
-      [ngClass]="{
-        'yellow-btn': details,
-        'green-btn': !details
-      }"
-      (click)="details = !details"
-    >
-      {{ !details ? 'Показать' : 'Скрыть' }} описание
-    </button>
-
-    <div *ngIf="details">
-      <p>{{ product.description }}</p>
+    <div class="img-container center bborder">
+        <img [src]="product.imageUrl" [alt]="product.name" />
     </div>
-  </div>
+    <div class="description">
+        <p class="vspace">Название: {{ product.name }}</p>
+        <p class="vspace">Тип: {{ product.type }}</p>
+        <p class="vspace gray">Price:</p>
+        <div class="vspace">{{ product.price | currency }}</div>
+
+        <button
+            [ngClass]="{
+                'yellow-btn': details,
+                'green-btn': !details
+            }"
+            (click)="details = !details"
+        >
+            {{ !details ? 'Показать' : 'Скрыть' }} описание
+        </button>
+        <button>Добавить в корзину</button>
+        <button *ngIf="user?.role === 'admin'">Редактировать</button>
+
+        <div *ngIf="details">
+            <p>{{ product.description }}</p>
+        </div>
+    </div>
 </div>
