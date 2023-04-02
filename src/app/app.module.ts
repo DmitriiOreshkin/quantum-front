@@ -12,6 +12,7 @@ import { FilterProductsPipe } from './pipes/filter-products.pipe';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { SearchProductsPipe } from './pipes/search-products.pipe';
+import { CartPageComponent } from './pages/cart-page/cart-page.component';
 
 @NgModule({
     declarations: [
@@ -24,6 +25,7 @@ import { SearchProductsPipe } from './pipes/search-products.pipe';
         HomePageComponent,
         SearchProductsPipe,
         LoginPageComponent,
+        CartPageComponent,
     ],
     imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule, ReactiveFormsModule],
     providers: [],

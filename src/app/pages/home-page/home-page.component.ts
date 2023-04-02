@@ -28,6 +28,12 @@ export class HomePageComponent implements OnInit {
 
     selectedOption = 'all';
 
+    cartPopup: boolean = false;
+
+    openPopup() {
+        this.cartPopup = !this.cartPopup;
+    }
+
     onSelect(v: string) {
         console.log(v);
         this.selectedOption = v;
