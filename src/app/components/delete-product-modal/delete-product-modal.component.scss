@@ -1,0 +1,32 @@
+.cart-popup {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    transition: opacity 500ms;
+    visibility: hidden;
+    opacity: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.visible {
+    visibility: visible;
+    opacity: 1;
+}
+
+.cart-content {
+    width: 50vw;
+    height: 10vh;
+    align-self: center;
+    background-color: white;
+    gap: 20px;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}

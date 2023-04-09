@@ -1,27 +1,27 @@
 <div class="product">
-    <div class="img-container center bborder">
-        <img [src]="product.imageUrl" [alt]="product.name" />
-    </div>
+    <a routerLink="/product/{{ product.id }}">
+        <div class="img-container center bborder">
+            <img [src]="product.imageUrl" [alt]="product.name" />
+        </div>
+    </a>
     <div class="description">
         <p class="vspace">Название: {{ product.name }}</p>
         <p class="vspace">Тип: {{ product.type }}</p>
         <p class="vspace gray">Price:</p>
         <div class="vspace">{{ product.price | currency }}</div>
 
-        <button
-            [ngClass]="{
-                'yellow-btn': details,
-                'green-btn': !details
-            }"
-            (click)="details = !details"
-        >
-            {{ !details ? 'Показать' : 'Скрыть' }} описание
-        </button>
-        <button>Добавить в корзину</button>
-        <button *ngIf="user?.role === 'admin'">Редактировать</button>
-
-        <div *ngIf="details">
-            <p>{{ product.description }}</p>
+        <div class="buttons">
+            <button *ngIf="!cart" (click)="addToCart()">Добавить в корзину</button>
+            <a *ngIf="!cart && user?.role" routerLink="edit/{{ product.id }}">
+                <button *ngIf="!cart && user?.role === 'admin'">Редактировать</button>
+            </a>
+            <a *ngIf="!cart && user?.role" routerLink="delete/{{ product.id }}">
+                <button>Удалить</button>
+            </a>
+            <button *ngIf="cart" (click)="deleteFromCart()">Удалить из корзины</button>
+            <div *ngIf="details">
+                <p>{{ product.description }}</p>
+            </div>
         </div>
     </div>
 </div>

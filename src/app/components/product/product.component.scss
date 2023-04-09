@@ -1,28 +1,33 @@
 .product {
-  border: 1px solid rgb(218, 218, 218);
-  // min-height: 500px;
+    border: 1px solid rgb(218, 218, 218);
+    // min-height: 500px;
 }
 
 .img-container {
-  padding: 10px;
-  border-bottom: 1px solid rgb(218, 218, 218);
-  min-height: 500px;
+    padding: 10px;
+    border-bottom: 1px solid rgb(218, 218, 218);
+    min-height: 500px;
 }
 
 img {
-  height: 50%;
-  width: 50%;
-  object-fit: contain;
+    height: 50%;
+    width: 50%;
+    object-fit: contain;
 }
 
 .description {
-  padding: 10px;
+    padding: 10px;
 }
 
 .yellow-btn {
-  background-color: yellow;
+    background-color: yellow;
 }
 
 .green-btn {
-  background-color: green;
+    background-color: green;
+}
+
+.buttons {
+    display: flex;
+    gap: 20px;
 }

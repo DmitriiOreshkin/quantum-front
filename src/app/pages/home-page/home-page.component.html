@@ -9,11 +9,9 @@
     </div>
     <div class="path center">Main page > Catalog</div>
     <div class="wish-list center">Wish list</div>
-    <button (click)="openPopup()" class="cart center">
-        Корзина
-        <!-- <a routerLink="cart">Корзина</a> -->
-        <!-- <button (click)="openPopup()">Корзина</button> -->
-    </button>
+    <a class="cart center" routerLink="cart">
+        <button>Корзина ({{ productsInCart }})</button>
+    </a>
     <div class="sidebar">Sidebar</div>
     <div *ngIf="products$ | async as products" class="products">
         <h1 class="center">Каталог</h1>
@@ -42,6 +40,5 @@
             [user]="user"
         ></Product>
     </div>
-    <!-- <router-outlet></router-outlet> -->
-    <app-cart-page [isOpen]="cartPopup"></app-cart-page>
+    <router-outlet></router-outlet>
 </div>

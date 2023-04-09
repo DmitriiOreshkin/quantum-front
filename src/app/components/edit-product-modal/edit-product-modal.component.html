@@ -1,0 +1,39 @@
+<div class="cart-popup visible">
+    <div class="cart-content">
+        <div>Редактирование продукта</div>
+        <form [formGroup]="changeProductForm" (ngSubmit)="submitChange()" class="container">
+            <p class="danger">{{ errorMessage }}</p>
+            <div class="form-group">
+                <label>Название продукта</label>
+                <input formControlName="name" type="text" name="name" />
+                <p
+                    class="danger"
+                    *ngIf="
+                        this.changeProductForm.get('name')?.invalid &&
+                        this.changeProductForm.get('name')?.touched
+                    "
+                >
+                    обязательное поле
+                </p>
+            </div>
+            <div class="form-group">
+                <label>описание продукта</label>
+                <input formControlName="description" type="text" name="description" />
+                <p
+                    class="danger"
+                    *ngIf="
+                        this.changeProductForm.get('description')?.invalid &&
+                        this.changeProductForm.get('description')?.touched
+                    "
+                >
+                    обязательное поле
+                </p>
+            </div>
+
+            <button [disabled]="changeProductForm.invalid" class="submit-btn" type="submit">
+                Сохранить
+            </button>
+        </form>
+        <a routerLink="/home"> <button>Отмена</button></a>
+    </div>
+</div>

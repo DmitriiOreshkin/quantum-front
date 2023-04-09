@@ -13,6 +13,9 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { SearchProductsPipe } from './pipes/search-products.pipe';
 import { CartPageComponent } from './pages/cart-page/cart-page.component';
+import { DeleteProductModalComponent } from './components/delete-product-modal/delete-product-modal.component';
+import { EditProductModalComponent } from './components/edit-product-modal/edit-product-modal.component';
+import { ProductPageComponent } from './pages/product-page/product-page.component';
 
 @NgModule({
     declarations: [
@@ -26,6 +29,9 @@ import { CartPageComponent } from './pages/cart-page/cart-page.component';
         SearchProductsPipe,
         LoginPageComponent,
         CartPageComponent,
+        DeleteProductModalComponent,
+        EditProductModalComponent,
+        ProductPageComponent,
     ],
     imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule, ReactiveFormsModule],
     providers: [],

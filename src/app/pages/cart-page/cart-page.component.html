@@ -1,6 +1,14 @@
-<div class="cart-popup" [ngClass]="{ visible: isOpen }" id="cart">
+<div class="cart-popup visible">
     <div class="cart-content">
-        Корзина будет тут
-        <button (click)="closePopup()">закрыть</button>
+        <div class="header">
+            <h1 class="center">Корзина</h1>
+            <button routerLink="/home">закрыть</button>
+        </div>
+
+        <div class="main" *ngIf="products.length == 0">Корзина пуста</div>
+
+        <div class="main" *ngIf="products.length != 0">
+            <Product *ngFor="let product of products" [product]="product" [cart]="true"></Product>
+        </div>
     </div>
 </div>

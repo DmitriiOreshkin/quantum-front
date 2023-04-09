@@ -21,5 +21,35 @@
     width: 70vw;
     height: 90vh;
     align-self: center;
-    background-color: aqua;
+    background-color: white;
+    display: grid;
+    grid-template-areas:
+        'head'
+        'main'
+        'foot';
+    grid-template-rows: 1fr 8fr 1fr;
+}
+
+.header {
+    grid-area: 'head';
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.main {
+    grid-area: 'main';
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    // grid-template-rows: 50px 50px;
+    grid-gap: 50px;
+    padding: 50px;
+    overflow: auto;
+}
+
+.left {
+    float: left;
+}
+
+.footer {
+    grid-area: 'foot';
 }
