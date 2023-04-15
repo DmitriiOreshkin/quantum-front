@@ -1,35 +1,14 @@
-<div class="page">
-    <form [formGroup]="loginForm" (ngSubmit)="submitLogin()" class="container">
-        <p class="danger">{{ errorMessage }}</p>
-        <div class="form-group">
+<div class="login-page">
+    <form [formGroup]="loginForm" (ngSubmit)="submitLogin()" class="form">
+        <div class="form__message form_danger">{{ errorMessage }}</div>
+        <div class="form__form-group">
             <label>Имя пользователя</label>
-            <input formControlName="username" type="text" name="username" />
-            <p
-                class="danger"
-                *ngIf="
-                    this.loginForm.get('username')?.invalid &&
-                    this.loginForm.get('username')?.touched
-                "
-            >
-                обязательное поле
-            </p>
+            <input class="form__input" formControlName="username" type="text" name="username" />
         </div>
-        <div class="form-group">
+        <div class="form__form-group">
             <label>Пароль</label>
-            <input formControlName="password" type="text" name="password" />
-            <p
-                class="danger"
-                *ngIf="
-                    this.loginForm.get('password')?.invalid &&
-                    this.loginForm.get('password')?.touched
-                "
-            >
-                обязательное поле
-            </p>
+            <input class="form__input" formControlName="password" type="text" name="password" />
         </div>
-        <!-- <div class="submit-btn"> -->
-        <!-- <label>Войти</label> -->
-        <button [disabled]="loginForm.invalid" class="submit-btn" type="submit">Войти</button>
-        <!-- </div> -->
+        <button class="form__submit-btn" type="submit">Войти</button>
     </form>
 </div>

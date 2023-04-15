@@ -1,0 +1,25 @@
+<div class="filters">
+    <div class="filters__pagination">
+        <button
+            class="filters__page-btn"
+            [ngClass]="{ 'filters__page-btn_active': isActive(page) }"
+            *ngFor="let page of createRange(pages); let i = index"
+            (click)="getProducts(page)"
+        >
+            {{ page }}
+        </button>
+    </div>
+    <input
+        class="filters__input"
+        #box
+        type="text"
+        placeholder="Поиск"
+        (keyup)="onSearch(box.value)"
+    />
+    <select class="filters__select" #filter (keyup)="onSelect(filter.value)">
+        <option class="filters__option" default value="all">Все товары</option>
+        <option class="filters__option" value="shoes">Обувь</option>
+        <option class="filters__option" value="clothes">Одежда</option>
+        <option class="filters__option" value="accessories">Аксессуары</option>
+    </select>
+</div>

@@ -1,44 +1,21 @@
-<div class="content">
-    <div class="logo center">quantum-store</div>
-    <div class="space"><app-global-error></app-global-error></div>
-    <div class="space center"></div>
-    <div class="space"></div>
-    <div class="profile center">
-        <p>{{ user?.name }}</p>
-        <button (click)="logOut()">Выйти</button>
-    </div>
-    <div class="path center">Main page > Catalog</div>
-    <div class="wish-list center">Wish list</div>
-    <a class="cart center" routerLink="cart">
-        <button>Корзина ({{ productsInCart }})</button>
-    </a>
-    <div class="sidebar">Sidebar</div>
-    <div *ngIf="products$ | async as products" class="products">
-        <h1 class="center">Каталог</h1>
-        <input type="text" placeholder="Поиск" [(ngModel)]="search" />
-        <select #filter (click)="onSelect(filter.value)">
-            <option default value="all">Все товары</option>
-            <option value="shoes">Обувь</option>
-            <option value="clothes">Одежда</option>
-            <option value="accessories">Аксессуары</option>
-        </select>
-        <div class="pagination">
-            <button
-                class="page-btn"
-                [ngClass]="{ active: isActive(page) }"
-                *ngFor="let page of createRange(pages); let i = index"
-                (click)="getProducts(page)"
-            >
-                {{ page }}
-            </button>
+<div class="home">
+    <app-header></app-header>
+    <div class="home-content">
+        <h1 class="home_space-around center">Каталог</h1>
+        <app-filters></app-filters>
+        <div class="home__divider"></div>
+        <div *ngIf="isFetching" class="home-content__is-fetching">Загрузка...</div>
+        <div *ngIf="!isFetching" class="home-content__products">
+            <Product
+                *ngFor="
+                    let product of products
+                        | searchProducts : search
+                        | filterProducts : selectedOption
+                "
+                [product]="product"
+                [user]="user"
+            ></Product>
         </div>
-        <Product
-            *ngFor="
-                let product of products | searchProducts : search | filterProducts : selectedOption
-            "
-            [product]="product"
-            [user]="user"
-        ></Product>
     </div>
     <router-outlet></router-outlet>
 </div>

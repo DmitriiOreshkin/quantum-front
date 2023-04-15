@@ -7,6 +7,8 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { IUser } from 'src/app/models/user';
 import { CartService } from 'src/app/services/cart.service';
+import { ServerService } from 'src/app/services/server.service';
+import { FiltersService } from 'src/app/services/filters.service';
 @Component({
     selector: 'app-home-page',
     templateUrl: './home-page.component.html',
@@ -14,14 +16,14 @@ import { CartService } from 'src/app/services/cart.service';
 })
 export class HomePageComponent implements OnInit {
     constructor(
-        private productsService: ProductService,
+        private server: ServerService,
+        private filters: FiltersService,
         private router: Router,
         private authService: AuthService,
         private cartService: CartService,
     ) {}
 
-    products$: Observable<IProduct[]> = this.productsService.getAll();
-    loading: boolean = false;
+    isFetching: boolean = true;
     products: IProduct[] = [];
     itemsPerPage: number = 5;
     pages: number;
@@ -31,35 +33,12 @@ export class HomePageComponent implements OnInit {
 
     selectedOption = 'all';
 
-    cartModalOpen: boolean = false;
-
-    deleteModalOpen: boolean = false;
-
-    toggleDeleteModal() {
-        this.deleteModalOpen = !this.deleteModalOpen;
-    }
-
-    openCartModal() {
-        this.cartModalOpen = !this.cartModalOpen;
-    }
-
-    onSelect(option: string) {
-        console.log(option);
-        this.selectedOption = option;
-    }
-
     user: IUser | null;
 
     logOut() {
         this.authService.logOut().subscribe({
             next: () => this.router.navigate(['login']),
         });
-    }
-
-    getProducts(page: number) {
-        this.products$ = this.productsService.getProductsByPage(page, this.itemsPerPage);
-        this.currPage = page;
-        // this.products$ = this.productsService.getAll().pipe(tap(() => (this.loading = false)));
     }
 
     createRange(number: number) {
@@ -71,13 +50,34 @@ export class HomePageComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.pages = this.productsService.getPages(this.itemsPerPage);
         this.authService.isLoggedIn().subscribe({
             next: () => {
                 this.user = this.authService.getUser();
-                this.loading = true;
-                this.getProducts(this.currPage);
                 this.productsInCart = this.cartService.getProductCount();
+
+                this.server.listenProductsFetching().subscribe({
+                    next: (products) => {
+                        this.products = products as IProduct[];
+                    },
+                });
+
+                this.server.listenProductsFetchingStatus().subscribe({
+                    next: (isFetching) => {
+                        this.isFetching = isFetching as boolean;
+                    },
+                });
+
+                this.filters.listenSearchEvent().subscribe({
+                    next: (text) => {
+                        this.search = text as string;
+                    },
+                });
+
+                this.filters.listenFilterEvent().subscribe({
+                    next: (option) => {
+                        this.selectedOption = option as string;
+                    },
+                });
 
                 // реактивно обновляем счётчик кол-ва продуктов в корзине
                 this.cartService.cart.subscribe({
@@ -85,6 +85,8 @@ export class HomePageComponent implements OnInit {
                         this.productsInCart = this.cartService.getProductCount();
                     },
                 });
+
+                this.server.getProductsByPage(this.currPage, this.itemsPerPage).subscribe();
             },
             error: () => {
                 this.router.navigate(['login']);

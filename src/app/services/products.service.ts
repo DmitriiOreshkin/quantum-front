@@ -16,17 +16,17 @@ export class ProductService {
         return throwError(() => error.message);
     }
 
-    getAll(): Observable<IProduct[]> {
-        return of(products);
-    }
+    // getAll(): Observable<IProduct[]> {
+    //     return of(products);
+    // }
 
-    getPages(itemsPerPage: number): number {
-        return Math.ceil(products.length / itemsPerPage);
-    }
+    // getPages(itemsPerPage: number): number {
+    //     return Math.ceil(products.length / itemsPerPage);
+    // }
 
-    getProductsByPage(page: number, itemsPerPage: number): Observable<IProduct[]> {
-        page = page - 1;
-        console.log(page * itemsPerPage, page * itemsPerPage + itemsPerPage);
-        return of(products.slice(page * itemsPerPage, page * itemsPerPage + itemsPerPage));
-    }
+    // getProductsByPage(page: number, itemsPerPage: number): Observable<IProduct[]> {
+    //     page = page - 1;
+    //     // console.log(page * itemsPerPage, page * itemsPerPage + itemsPerPage);
+    //     return of(products.slice(page * itemsPerPage, page * itemsPerPage + itemsPerPage));
+    // }
 }

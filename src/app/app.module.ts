@@ -16,6 +16,8 @@ import { CartPageComponent } from './pages/cart-page/cart-page.component';
 import { DeleteProductModalComponent } from './components/delete-product-modal/delete-product-modal.component';
 import { EditProductModalComponent } from './components/edit-product-modal/edit-product-modal.component';
 import { ProductPageComponent } from './pages/product-page/product-page.component';
+import { FiltersComponent } from './components/filters/filters.component';
+import { ButtonComponent } from './components/button/button.component';
 
 @NgModule({
     declarations: [
@@ -32,6 +34,8 @@ import { ProductPageComponent } from './pages/product-page/product-page.componen
         DeleteProductModalComponent,
         EditProductModalComponent,
         ProductPageComponent,
+        FiltersComponent,
+        ButtonComponent,
     ],
     imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule, ReactiveFormsModule],
     providers: [],

@@ -1,1 +1,10 @@
-<p>header works!</p>
+<div class="header">
+    <div class="header__logo header_center">quantum-store</div>
+    <div class="header__space"><app-global-error></app-global-error></div>
+    <div class="header__space header_center"></div>
+    <div class="header__space"></div>
+    <div (click)="logOut()" class="header__profile header_center">Выйти</div>
+    <div class="header__breadcrumps header_center">Main page > Catalog</div>
+    <div class="header__wish-list header_center">Wish list</div>
+    <a class="header__cart header_center" routerLink="cart"> Корзина ({{ productsInCart }}) </a>
+</div>

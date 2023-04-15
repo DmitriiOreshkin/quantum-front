@@ -1,0 +1,67 @@
+$border-color: rgb(218, 218, 218);
+
+.filters__pagination {
+    grid-area: pagination;
+    border: 1px solid $border-color;
+}
+
+.filters__input {
+    grid-area: search;
+
+    border: 1px solid $border-color;
+    font-size: 20px;
+    padding: 10px;
+}
+
+.filters__input:focus {
+    outline: none;
+    border: 1px solid #f76c8d;
+}
+
+.filters__select {
+    grid-area: filter;
+    font-size: 20px;
+    cursor: pointer;
+
+    background-color: #ffffff;
+    border: 1px solid $border-color;
+    padding: 5px;
+}
+
+.filters__select:focus {
+    outline: none;
+    border: 1px solid #f76c8d;
+}
+
+.filters__option {
+    padding: 5px;
+    margin: 50px;
+}
+
+.filters__page-btn {
+    padding: 10px;
+    margin: 5px;
+    background-color: #f3a8d4;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.filters__page-btn:hover {
+    background-color: #f76c8d;
+}
+
+.filters__page-btn_active {
+    background-color: #f76c8d;
+    color: #ffffff;
+}
+
+.filters {
+    display: grid;
+    font-family: 'Roboto', sans-serif;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas:
+        'pagination pagination pagination'
+        'search search filter';
+    column-gap: 50px;
+    row-gap: 10px;
+}

@@ -1,24 +1,35 @@
 <div class="product">
-    <a routerLink="/product/{{ product.id }}">
-        <div class="img-container center bborder">
-            <img [src]="product.imageUrl" [alt]="product.name" />
-        </div>
+    <a class="product__img-container" routerLink="/product/{{ product.id }}">
+        <img class="product__img" [src]="product.imageUrl" [alt]="product.name" />
+        <!-- </div> -->
     </a>
-    <div class="description">
-        <p class="vspace">Название: {{ product.name }}</p>
-        <p class="vspace">Тип: {{ product.type }}</p>
-        <p class="vspace gray">Price:</p>
-        <div class="vspace">{{ product.price | currency }}</div>
+    <div class="product__description">
+        <p class="product__description_space product__description_gray">Название:</p>
+        <p class="product__description_space">{{ product.name }}</p>
 
-        <div class="buttons">
-            <button *ngIf="!cart" (click)="addToCart()">Добавить в корзину</button>
-            <a *ngIf="!cart && user?.role" routerLink="edit/{{ product.id }}">
-                <button *ngIf="!cart && user?.role === 'admin'">Редактировать</button>
+        <p class="product__description_space product__description_gray">Тип:</p>
+        <p class="product__description_space">{{ product.type }}</p>
+
+        <p class="product__description_space product__description_gray">Цена:</p>
+        <p class="product__description_space">{{ product.price | currency }}</p>
+
+        <div class="product__buttons">
+            <button class="product__button" *ngIf="!cart" (click)="addToCart()">🛒</button>
+            <a
+                [ngClass]="{ product__button: !cart && user?.role && user?.role === 'admin' }"
+                *ngIf="!cart && user?.role && user?.role === 'admin'"
+                routerLink="edit/{{ product.id }}"
+            >
+                ✏️
             </a>
-            <a *ngIf="!cart && user?.role" routerLink="delete/{{ product.id }}">
-                <button>Удалить</button>
+            <a
+                [ngClass]="{ product__button: !cart && user?.role && user?.role === 'admin' }"
+                *ngIf="!cart && user?.role && user?.role === 'admin'"
+                routerLink="delete/{{ product.id }}"
+            >
+                ❌
             </a>
-            <button *ngIf="cart" (click)="deleteFromCart()">Удалить из корзины</button>
+            <button class="product__button" *ngIf="cart" (click)="deleteFromCart()">❌</button>
             <div *ngIf="details">
                 <p>{{ product.description }}</p>
             </div>

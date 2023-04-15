@@ -4,27 +4,27 @@ import { products } from './data/products';
 import { ProductService } from './services/products.service';
 import { Observable, tap } from 'rxjs';
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  constructor(private productsService: ProductService) {}
+    constructor(private productsService: ProductService) {}
 
-  loading: boolean = false;
-  products: IProduct[] = [];
-  term: string = '';
+    loading: boolean = false;
+    products: IProduct[] = [];
+    term: string = '';
 
-  // products$: Observable<IProduct[]>;
+    // products$: Observable<IProduct[]>;
 
-  ngOnInit(): void {
-    this.loading = true;
-    // this.products$ = this.productsService
-    // .getAll()
-    // .pipe(tap(() => (this.loading = false)));
-    this.productsService.getAll().subscribe((products) => {
-      this.products = products;
-      this.loading = false;
-    });
-  }
+    ngOnInit(): void {
+        this.loading = true;
+        // this.products$ = this.productsService
+        // .getAll()
+        // .pipe(tap(() => (this.loading = false)));
+        // this.productsService.getAll().subscribe((products) => {
+        // this.products = products;
+        // this.loading = false;
+        // });
+    }
 }
