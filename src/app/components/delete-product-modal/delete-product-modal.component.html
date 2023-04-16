@@ -1,9 +1,9 @@
-<div class="cart-popup visible">
-    <div class="cart-content">
-        <div>Точно удалить?</div>
-        <div class="buttons">
-            <button (click)="deleteProduct()">Да</button>
-            <a routerLink="/home"> <button>Отмена</button></a>
+<div class="cart-popup cart-popup_visible">
+    <div class="cart-popup__content">
+        <div class="cart-popup__title">Точно удалить?</div>
+        <div class="cart-popup__buttons">
+            <button class="cart-popup__button" (click)="deleteProduct()">Да</button>
+            <a class="cart-popup__button" routerLink="/home">Отмена</a>
         </div>
     </div>
 </div>
