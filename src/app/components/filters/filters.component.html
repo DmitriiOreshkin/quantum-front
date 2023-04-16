@@ -16,7 +16,7 @@
         placeholder="Поиск"
         (keyup)="onSearch(box.value)"
     />
-    <select class="filters__select" #filter (keyup)="onSelect(filter.value)">
+    <select class="filters__select" #filter (change)="onSelect(filter.value)">
         <option class="filters__option" default value="all">Все товары</option>
         <option class="filters__option" value="shoes">Обувь</option>
         <option class="filters__option" value="clothes">Одежда</option>

@@ -20,27 +20,25 @@ export class FiltersComponent implements OnInit {
     constructor(private server: ServerService, private filters: FiltersService) {}
 
     ngOnInit(): void {
-        this.server.getProductsPages(this.itemsPerPage).subscribe({
+        this.server.listenProductsPages().subscribe({
             next: (pages) => {
+                // alert(pages);
                 this.pages = pages;
             },
         });
     }
 
-    onSearch(event: string) {
-        // на самом деле сюда можно запихнуть обращение к серверу
-        this.filters.setFilter(event);
+    onSearch(searchString: string) {
+        this.server.searchProducts(searchString);
     }
 
-    onSelect(option: string) {
-        // на самом деле сюда можно запихнуть обращение к серверу
-        this.selectedOption = option;
-        this.filters.setFilter(option);
+    onSelect(type: string) {
+        this.server.filterProducts(type);
     }
 
     getProducts(page: number) {
         this.currPage = page;
-        this.server.getProductsByPage(page, 5).subscribe();
+        this.server.getProductsByPage(page, 5);
     }
 
     createRange(number: number) {

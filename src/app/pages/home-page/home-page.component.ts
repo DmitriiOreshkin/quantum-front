@@ -86,7 +86,7 @@ export class HomePageComponent implements OnInit {
                     },
                 });
 
-                this.server.getProductsByPage(this.currPage, this.itemsPerPage).subscribe();
+                this.server.getProductsByPage(this.currPage, this.itemsPerPage);
             },
             error: () => {
                 this.router.navigate(['login']);

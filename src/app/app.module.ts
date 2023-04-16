@@ -17,7 +17,6 @@ import { DeleteProductModalComponent } from './components/delete-product-modal/d
 import { EditProductModalComponent } from './components/edit-product-modal/edit-product-modal.component';
 import { ProductPageComponent } from './pages/product-page/product-page.component';
 import { FiltersComponent } from './components/filters/filters.component';
-import { ButtonComponent } from './components/button/button.component';
 
 @NgModule({
     declarations: [
@@ -35,7 +34,6 @@ import { ButtonComponent } from './components/button/button.component';
         EditProductModalComponent,
         ProductPageComponent,
         FiltersComponent,
-        ButtonComponent,
     ],
     imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule, ReactiveFormsModule],
     providers: [],

@@ -15,12 +15,10 @@ export class LoginPageComponent implements OnInit {
     errorMessage = '';
 
     ngOnInit(): void {
+        this.authService.isLoggedIn().subscribe({ next: () => this.router.navigate(['home']) });
         this.loginForm = new FormGroup({
             username: new FormControl('', [Validators.required]),
-            password: new FormControl('', [
-                Validators.required,
-                // Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{4,}$/),
-            ]),
+            password: new FormControl('', [Validators.required]),
         });
     }
 

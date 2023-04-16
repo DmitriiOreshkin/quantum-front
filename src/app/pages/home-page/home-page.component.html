@@ -6,15 +6,7 @@
         <div class="home__divider"></div>
         <div *ngIf="isFetching" class="home-content__is-fetching">Загрузка...</div>
         <div *ngIf="!isFetching" class="home-content__products">
-            <Product
-                *ngFor="
-                    let product of products
-                        | searchProducts : search
-                        | filterProducts : selectedOption
-                "
-                [product]="product"
-                [user]="user"
-            ></Product>
+            <Product *ngFor="let product of products" [product]="product" [user]="user"></Product>
         </div>
     </div>
     <router-outlet></router-outlet>
