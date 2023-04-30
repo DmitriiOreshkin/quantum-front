@@ -25,7 +25,7 @@ export class HomePageComponent implements OnInit {
 
     isFetching: boolean = true;
     products: IProduct[] = [];
-    itemsPerPage: number = 5;
+    itemsPerPage: number = 8;
     pages: number;
     currPage: number = 1;
     search: string = '';

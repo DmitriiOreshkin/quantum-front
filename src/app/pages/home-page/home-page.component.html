@@ -1,13 +1,46 @@
-<div class="home">
-    <app-header></app-header>
-    <div class="home-content">
-        <h1 class="home_space-around center">Каталог</h1>
-        <app-filters></app-filters>
-        <div class="home__divider"></div>
-        <div *ngIf="isFetching" class="home-content__is-fetching">Загрузка...</div>
-        <div *ngIf="!isFetching" class="home-content__products">
-            <Product *ngFor="let product of products" [product]="product" [user]="user"></Product>
+<div class="page">
+    <header>
+        <div class="container">
+            <app-header></app-header>
         </div>
-    </div>
-    <router-outlet></router-outlet>
+    </header>
+
+    <h1 class="home__title home_center">Каталог</h1>
+
+    <main class="main">
+        <div class="container">
+            <div *ngIf="isFetching" class="home-content__is-fetching">Загрузка...</div>
+
+            <div *ngIf="!isFetching" class="home-content__products">
+                <div class="home-content__filters">
+                    <app-filters></app-filters>
+                </div>
+                <Product
+                    *ngFor="let product of products"
+                    [product]="product"
+                    [user]="user"
+                ></Product>
+            </div>
+        </div>
+    </main>
+    <!-- <app-filters></app-filters>
+            <div class="home__divider"></div>
+            <div *ngIf="isFetching" class="home-content__is-fetching">Загрузка...</div>
+            <div *ngIf="!isFetching" class="home-content__products">
+                <Product
+                    *ngFor="let product of products"
+                    [product]="product"
+                    [user]="user"
+                ></Product> -->
+    <!-- </div> -->
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__inner">
+                by Dmitrii Oreshkin
+                <p>d</p>
+            </div>
+        </div>
+    </footer>
 </div>
+<router-outlet></router-outlet>

@@ -1,6 +1,6 @@
 import { IProduct } from '../models/products';
 
-const imageUrl = 'http://via.placeholder.com/640x360';
+const imageUrl = 'http://via.placeholder.com/640x560';
 
 export const products: IProduct[] = [
     {

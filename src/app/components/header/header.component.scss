@@ -1,40 +1,22 @@
 $border-color: rgb(218, 218, 218);
 
-.header {
-    display: grid;
-    font-family: 'Roboto', sans-serif;
-    grid-template-columns: 25em 1fr 1fr 1fr 25em;
-    grid-template-rows: 60px 60px;
-    grid-auto-rows: minmax(50px, auto);
-    grid-template-areas:
-        'logo space space space profile'
-        'breadcrumps wish-list wish-list cart cart';
-}
-
-.header__space {
-    grid-area: space;
-    border-bottom: 1px solid $border-color;
-    background-image: linear-gradient(
-        to right,
-        #f76c8d,
-        #f78ab4,
-        #f3a8d4,
-        #efc5ea,
-        #f0dff8,
-        #e9e9ff,
-        #e8f2ff,
-        #eef9ff,
-        #d1f9ff,
-        #affaff,
-        #88fbff,
-        #5ffbf1
-    );
+.header__header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
 }
 
 .header__logo {
-    grid-area: logo;
-    border-bottom: 1px solid $border-color;
-    border-right: 1px solid $border-color;
+    text-transform: uppercase;
+    display: inline-block;
+    color: #4a2e4e;
+}
+
+.header__buttons {
+    // padding: 10px;
+    display: flex;
+    gap: 20px;
 }
 
 .header__profile {
@@ -77,4 +59,13 @@ $border-color: rgb(218, 218, 218);
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+@media (max-width: 767px) {
+}
+@media (min-width: 768px) and (max-width: 991px) {
+}
+@media (min-width: 991px) and (max-width: 1199px) {
+}
+@media (min-width: 1200px) {
 }

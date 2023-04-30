@@ -53,24 +53,25 @@ export class ServerService {
     patchProduct(id: number | string) {}
 
     searchProducts(text: string) {
+        console.log(text);
         if (text === '') {
-            this.getProductsByPage(1, 5);
+            this.getProductsByPage(1, 8);
             return;
         }
         const stream$ = of(
             products.filter((product: IProduct) => product.name.includes(text)),
         ).pipe(
             tap(() => {
-                this.isProductsFetching.next(true);
+                // this.isProductsFetching.next(true);
             }),
-            delay(1000),
+            // delay(1000),
             tap((products: IProduct[]) => {
                 this.serverResponse.next(products);
                 // this.productsPages.next(Math.ceil(products.length / 5));
                 this.productsPages.next(1);
             }),
             tap(() => {
-                this.isProductsFetching.next(false);
+                // this.isProductsFetching.next(false);
             }),
         );
 

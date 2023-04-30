@@ -11,7 +11,7 @@ import { ServerService } from 'src/app/services/server.service';
     styleUrls: ['./filters.component.scss'],
 })
 export class FiltersComponent implements OnInit {
-    itemsPerPage: number = 5;
+    itemsPerPage: number = 8;
     currPage: number = 1;
     pages: number;
     search: string = '';
@@ -22,7 +22,7 @@ export class FiltersComponent implements OnInit {
     ngOnInit(): void {
         this.server.listenProductsPages().subscribe({
             next: (pages) => {
-                // alert(pages);
+                alert(pages);
                 this.pages = pages;
             },
         });
@@ -38,7 +38,7 @@ export class FiltersComponent implements OnInit {
 
     getProducts(page: number) {
         this.currPage = page;
-        this.server.getProductsByPage(page, 5);
+        this.server.getProductsByPage(page, 8);
     }
 
     createRange(number: number) {

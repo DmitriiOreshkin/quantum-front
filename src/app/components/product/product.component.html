@@ -4,16 +4,16 @@
         <!-- </div> -->
     </a>
     <div class="product__description">
-        <p class="product__description_space product__description_gray">Название:</p>
-        <p class="product__description_space">{{ product.name }}</p>
+        <p class="product__description_space product__description_name">{{ product.name }}</p>
 
-        <p class="product__description_space product__description_gray">Тип:</p>
-        <p class="product__description_space">{{ product.type }}</p>
+        <!-- <p class="product__description_space product__description_gray">Тип:</p> -->
+        <!-- <p class="product__description_space">{{ product.type }}</p> -->
 
-        <p class="product__description_space product__description_gray">Цена:</p>
-        <p class="product__description_space">{{ product.price | currency }}</p>
+        <p class="product__description_space product__description_price">
+            От {{ product.price | currency }}
+        </p>
 
-        <div class="product__buttons">
+        <!-- <div class="product__buttons">
             <button class="product__button" *ngIf="!cart" (click)="addToCart()">🛒</button>
             <a
                 [ngClass]="{ product__button: !cart && user?.role && user?.role === 'admin' }"
@@ -33,6 +33,6 @@
             <div *ngIf="details">
                 <p>{{ product.description }}</p>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>
