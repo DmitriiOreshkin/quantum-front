@@ -13,7 +13,11 @@
             От {{ product.price | currency }}
         </p>
 
-        <!-- <div class="product__buttons">
+        <p *ngIf="view">
+            {{ product.description }}
+        </p>
+
+        <div class="product__buttons">
             <button class="product__button" *ngIf="!cart" (click)="addToCart()">🛒</button>
             <a
                 [ngClass]="{ product__button: !cart && user?.role && user?.role === 'admin' }"
@@ -33,6 +37,6 @@
             <div *ngIf="details">
                 <p>{{ product.description }}</p>
             </div>
-        </div> -->
+        </div>
     </div>
 </div>

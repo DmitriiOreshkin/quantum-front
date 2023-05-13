@@ -1,1 +1,12 @@
 <p>Это страница с продуктом, id этого продукта: {{ id }}</p>
+<main class="main">
+    <div class="container">
+        <div *ngIf="isFetching" class="home-content__is-fetching">Загрузка...</div>
+
+        <div *ngIf="!isFetching" class="home-content__products">
+            <div class="home-content__filters"></div>
+            <Product [product]="product" [user]="user" [view]="true"></Product>
+        </div>
+    </div>
+</main>
+<router-outlet></router-outlet>

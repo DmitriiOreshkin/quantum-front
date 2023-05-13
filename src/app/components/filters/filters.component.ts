@@ -13,7 +13,7 @@ import { ServerService } from 'src/app/services/server.service';
 export class FiltersComponent implements OnInit {
     itemsPerPage: number = 8;
     currPage: number = 1;
-    pages: number;
+    pages: number = 1;
     search: string = '';
     selectedOption: string = 'all';
 
@@ -22,7 +22,6 @@ export class FiltersComponent implements OnInit {
     ngOnInit(): void {
         this.server.listenProductsPages().subscribe({
             next: (pages) => {
-                alert(pages);
                 this.pages = pages;
             },
         });

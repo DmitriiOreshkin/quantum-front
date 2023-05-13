@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { IProduct } from 'src/app/models/products';
+import { ServerService } from 'src/app/services/server.service';
 
 @Component({
     selector: 'app-edit-product-modal',
@@ -9,7 +11,13 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class EditProductModalComponent {
     id: string | null;
-    constructor(private route: ActivatedRoute) {}
+    product: any;
+    isFetching: boolean;
+    constructor(
+        private route: ActivatedRoute,
+        private server: ServerService,
+        private router: Router,
+    ) {}
 
     changeProductForm!: FormGroup;
     errorMessage = '';
@@ -30,13 +38,21 @@ export class EditProductModalComponent {
 
     private getProduct() {
         // запрос к серверу
-        this.changeProductForm.setValue({
-            name: 'sample text',
-            description: 'sample text',
+
+        this.server.getProductsById(this.id).subscribe({
+            next: (products: any) => {
+                this.product = products[0];
+                // console.log(this.product);
+                this.changeProductForm.setValue({
+                    name: this.product.name,
+                    description: this.product.description,
+                });
+            },
         });
     }
 
     submitChange() {
-        alert(`edit product with id ${this.id}`);
+        this.server.patchProduct({ ...this.product, ...this.changeProductForm.value });
+        this.router.navigate(['home']);
     }
 }

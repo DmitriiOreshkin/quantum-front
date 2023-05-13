@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ServerService } from 'src/app/services/server.service';
 
 @Component({
     selector: 'app-delete-product-modal',
@@ -8,12 +9,24 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class DeleteProductModalComponent implements OnInit {
     id: string | null;
-    constructor(private route: ActivatedRoute) {}
+    product: any;
+    constructor(
+        private route: ActivatedRoute,
+        private server: ServerService,
+        private router: Router,
+    ) {}
     ngOnInit(): void {
         this.id = this.route.snapshot.paramMap.get('id');
+
+        this.server.getProductsById(this.id).subscribe({
+            next: (products: any) => {
+                this.product = products[0];
+            },
+        });
     }
+
     public deleteProduct() {
-        alert(`delete product with id ${this.id}`);
-        // здесь надо внедрить сервис по работе с серваком (эмуляция)
+        this.server.deleteProduct(this.product);
+        this.router.navigate(['home']);
     }
 }

@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { IProduct } from 'src/app/models/products';
+import { IUser } from 'src/app/models/user';
+import { AuthService } from 'src/app/services/auth.service';
+import { ServerService } from 'src/app/services/server.service';
 
 @Component({
     selector: 'app-product-page',
@@ -8,8 +12,30 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ProductPageComponent {
     id: string | null;
-    constructor(private route: ActivatedRoute) {}
+    product: IProduct;
+    isFetching: boolean;
+    user: IUser;
+    constructor(
+        private route: ActivatedRoute,
+        private server: ServerService,
+        private authService: AuthService,
+        private router: Router,
+    ) {}
     ngOnInit(): void {
-        this.id = this.route.snapshot.paramMap.get('id');
+        this.authService.isLoggedIn().subscribe({
+            next: () => {
+                this.id = this.route.snapshot.paramMap.get('id');
+                this.user = this.authService.getUser();
+
+                this.server.getProductsById(this.id).subscribe({
+                    next: (products: any) => {
+                        this.product = products[0];
+                    },
+                });
+            },
+            error: () => {
+                this.router.navigate(['login']);
+            },
+        });
     }
 }

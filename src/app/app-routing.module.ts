@@ -19,7 +19,14 @@ const routes: Routes = [
             { path: 'edit/:id', component: EditProductModalComponent },
         ],
     },
-    { path: 'product/:id', component: ProductPageComponent },
+    {
+        path: 'product/:id',
+        component: ProductPageComponent,
+        children: [
+            { path: 'delete/:id', component: DeleteProductModalComponent },
+            { path: 'edit/:id', component: EditProductModalComponent },
+        ],
+    },
     { path: '**', redirectTo: 'home' },
 ];
 

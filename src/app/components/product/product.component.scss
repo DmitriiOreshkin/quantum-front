@@ -26,14 +26,20 @@ img {
 }
 
 .product__description {
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .product__description_name {
+    // flex-grow: 1;
+    width: 100%;
     font-size: 24px;
     color: #6979ab;
 }
 
 .product__description_price {
+    width: 100%;
+    // flex-grow: 1;
     font-size: 20px;
     color: #795376;
 }

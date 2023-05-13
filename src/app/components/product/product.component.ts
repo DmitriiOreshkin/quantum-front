@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { IProduct } from 'src/app/models/products';
 import { IUser } from 'src/app/models/user';
 import { CartService } from 'src/app/services/cart.service';
+import { ServerService } from 'src/app/services/server.service';
 
 @Component({
     selector: 'Product',
@@ -16,7 +17,7 @@ export class ProductComponent implements OnInit {
     @Input() product: IProduct;
     @Input() user: IUser | null;
     @Input() cart: boolean | null;
-    @Input() toggleDeleteModal: any;
+    @Input() view: boolean | null;
 
     details: boolean = false;
 

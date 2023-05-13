@@ -15,6 +15,8 @@ export class ServerService {
     private isProductsFetching = new Subject();
     private productsPages = new Subject<number>();
 
+    private products: IProduct[] = products;
+
     listenProductsFetching() {
         return this.serverResponse;
     }
@@ -29,9 +31,9 @@ export class ServerService {
 
     getProductsByPage(page: number, itemsPerPage: number) {
         page = page - 1;
-        const allProdLen = products.length;
+        const allProdLen = this.products.length;
         const stream$ = of(
-            products.slice(page * itemsPerPage, page * itemsPerPage + itemsPerPage),
+            this.products.slice(page * itemsPerPage, page * itemsPerPage + itemsPerPage),
         ).pipe(
             tap(() => {
                 this.isProductsFetching.next(true);
@@ -39,6 +41,7 @@ export class ServerService {
             delay(1000),
             tap((products: IProduct[]) => {
                 this.serverResponse.next(products);
+                // alert('server' + Math.ceil(allProdLen / itemsPerPage));
                 this.productsPages.next(Math.ceil(allProdLen / itemsPerPage));
             }),
             tap(() => {
@@ -48,18 +51,27 @@ export class ServerService {
         stream$.subscribe();
     }
 
-    deleteProduct(id: number | string) {}
+    deleteProduct(deleteProduct: IProduct) {
+        this.products.map((product, index) => {
+            if (product.id === deleteProduct.id) this.products.splice(index, 1);
+        });
+        this.getProductsByPage(1, 8);
+    }
 
-    patchProduct(id: number | string) {}
+    patchProduct(patchProduct: IProduct) {
+        this.products.map((product, index) => {
+            if (product.id === patchProduct.id) this.products[index] = patchProduct;
+        });
+        this.getProductsByPage(1, 8);
+    }
 
     searchProducts(text: string) {
-        console.log(text);
         if (text === '') {
             this.getProductsByPage(1, 8);
             return;
         }
         const stream$ = of(
-            products.filter((product: IProduct) => product.name.includes(text)),
+            this.products.filter((product: IProduct) => product.name.includes(text)),
         ).pipe(
             tap(() => {
                 // this.isProductsFetching.next(true);
@@ -67,8 +79,8 @@ export class ServerService {
             // delay(1000),
             tap((products: IProduct[]) => {
                 this.serverResponse.next(products);
-                // this.productsPages.next(Math.ceil(products.length / 5));
-                this.productsPages.next(1);
+                this.productsPages.next(Math.ceil(products.length / 8));
+                // this.productsPages.next(1);
             }),
             tap(() => {
                 // this.isProductsFetching.next(false);
@@ -80,18 +92,17 @@ export class ServerService {
 
     filterProducts(type: string | null) {
         if (type === 'all') {
-            this.getProductsByPage(1, 5);
+            this.getProductsByPage(1, 8);
             return;
         }
-        const stream$ = of(products.filter((product: IProduct) => product.type == type)).pipe(
+        const stream$ = of(this.products.filter((product: IProduct) => product.type == type)).pipe(
             tap(() => {
                 this.isProductsFetching.next(true);
             }),
             delay(1000),
             tap((products: IProduct[]) => {
                 this.serverResponse.next(products);
-                // this.productsPages.next(Math.ceil(products.length / 5));
-                this.productsPages.next(1);
+                this.productsPages.next(Math.ceil(products.length / 8));
             }),
             tap(() => {
                 this.isProductsFetching.next(false);
@@ -99,5 +110,18 @@ export class ServerService {
         );
 
         stream$.subscribe();
+    }
+
+    getProductsById(id: string | null) {
+        return of(this.products.filter((product: IProduct) => product.id === id)).pipe(
+            tap(() => {
+                // this.isProductsFetching.next(true);
+            }),
+            delay(400),
+            tap(() => {
+                // this.isProductsFetching.next(false);
+            }),
+        );
+        // stream$.subscribe();
     }
 }

@@ -41,14 +41,6 @@ export class HomePageComponent implements OnInit {
         });
     }
 
-    createRange(number: number) {
-        return new Array(number).fill(0).map((n, index) => index + 1);
-    }
-
-    isActive(page: number) {
-        return this.currPage === page;
-    }
-
     ngOnInit(): void {
         this.authService.isLoggedIn().subscribe({
             next: () => {

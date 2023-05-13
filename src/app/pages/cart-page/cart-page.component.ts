@@ -22,6 +22,10 @@ export class CartPageComponent implements OnInit {
             },
         });
     }
+
+    deleteFromCart(product: IProduct): void {
+        this.cartService.deleteFromCart(product);
+    }
     // @Input() isOpen: boolean;
     // closePopup() {
     //     this.isOpen = false;
